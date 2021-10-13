@@ -1,10 +1,29 @@
 import React, {Component} from 'react';
 
+
+
+const Problematic = () => {
+    throw (new Error('버그가 나타났다!'));
+    return (
+      <div>
+        
+      </div>
+    );
+  };
+
 class Counter extends Component{
 
-state = {
-    number : 0
-}
+    state = {
+        number: 0,
+        error: false
+      }
+
+      componentDidCatch(error, info) {
+        this.setState({
+          error: true
+        });
+      }
+      
 
 //라이프 싸이클
 constructor(props) {
@@ -50,11 +69,15 @@ handleDecrease = () => {
 }
 
 
+
     render() {
+        if (this.state.error) return (<h1>에러발생!</h1>);
+
         return(
             <div>
                 <h1>카운터</h1>
                 <div>값 : {this.state.number}</div>
+                { this.state.number === 4 && <Problematic /> }
                 <button onClick={this.handleIncrease}>+</button>
                 <button onClick={this.handleDecrease}>-</button>
             </div>
