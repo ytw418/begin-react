@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './App.css'
-import Counter from './Counter';
+
+import 카운터 from './카운터';
 
 import MyName from './MyName';
 
@@ -9,7 +10,7 @@ class App extends Component {
     return(
           <div>
             <MyName name="lcaros"></MyName>
-            <Counter></Counter>
+            <카운터></카운터>
             </div>
     )
   }
